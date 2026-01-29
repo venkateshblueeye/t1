@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
     }
 
     // enable user to specify action
-    while ((choice = enterChoice()) != 5)
+    while ((choice = enterChoice()) != 6)
     {
         switch (choice)
         {
@@ -52,6 +52,9 @@ int main(int argc, char *argv[])
         // delete existing record
         case 4:
             deleteRecord(cfPtr);
+            break;
+        case 5:
+            displayDetails(cfPtr);
             break;
         // display if user does not select valid choice
         default:
