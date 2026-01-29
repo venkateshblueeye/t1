@@ -18,6 +18,7 @@ void textFile(FILE *readPtr);
 void updateRecord(FILE *fPtr);
 void newRecord(FILE *fPtr);
 void deleteRecord(FILE *fPtr);
+void displayDetails(FILE *readPtr);
 
 int main(int argc, char *argv[])
 {
@@ -199,6 +200,26 @@ void newRecord(FILE *fPtr)
         fwrite(&client, sizeof(struct clientData), 1, fPtr);
     } // end else
 } // end function newRecord
+void displayDetails(FILE *fPtr)
+{
+    struct clientData client = {0, "", "", 0.0};
+
+    rewind(fPtr); // go to beginning of file
+
+    printf("\n%-6s %-16s %-11s\n", "Acct", "Last Name", "First Name");
+    printf("----------------------------------\n");
+
+    while (fread(&client, sizeof(struct clientData), 1, fPtr))
+    {
+        if (client.acctNum != 0)
+        {
+            printf("%-6u %-16s %-11s\n",
+                   client.acctNum,
+                   client.lastName,
+                   client.firstName);
+        }
+    }
+}
 
 // enable user to input menu choice
 unsigned int enterChoice(void)
@@ -211,6 +232,7 @@ unsigned int enterChoice(void)
                  "2 - update an account\n"
                  "3 - add a new account\n"
                  "4 - delete an account\n"
+                 "5 - display account details\n"
                  "5 - end program\n? ");
 
     scanf("%u", &menuChoice); // receive choice from user
