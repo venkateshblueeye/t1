@@ -1,5 +1,5 @@
 # Code By Venkatesh 
-# Added a New Fuction to display the First Name, Last Name and Amount
+# Added a New Fuction to display the First Name, Last Name and Account Number
 # function prototype
      void displayDetails(FILE *readPtr);   
 # Fucntion Body
